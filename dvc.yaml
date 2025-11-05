@@ -5,3 +5,17 @@ stages:
     - src\data\data_ingestion.py
     outs:
     - data\raw
+  data_preprocessing:
+    cmd: python src\data_preprocessing\data_preprocessing.py
+    deps:
+    - src\features\feature_encoding.py
+    - data\raw
+    outs:
+    - data\processed
+  feature_encoding:
+    cmd: python src\features\feature_encoding.py
+    deps:
+    - src\features\feature_encoding.py
+    - data\processed
+    outs:
+    - data\interim

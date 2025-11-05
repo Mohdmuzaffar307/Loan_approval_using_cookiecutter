@@ -13,3 +13,39 @@ stages:
       md5: 19cc8e96ad30ff169c81e1e5593020d7.dir
       size: 124684
       nfiles: 1
+  data_preprocessing:
+    cmd: python src\data_preprocessing\data_preprocessing.py
+    deps:
+    - path: data\raw
+      hash: md5
+      md5: 19cc8e96ad30ff169c81e1e5593020d7.dir
+      size: 124684
+      nfiles: 1
+    - path: src\features\feature_encoding.py
+      hash: md5
+      md5: be822a68a600ca4b6f7f638340bce587
+      size: 2875
+    outs:
+    - path: data\processed
+      hash: md5
+      md5: d54db41d697487b5cb6feb9ddd2530ed.dir
+      size: 98004
+      nfiles: 2
+  feature_encoding:
+    cmd: python src\features\feature_encoding.py
+    deps:
+    - path: data\processed
+      hash: md5
+      md5: d54db41d697487b5cb6feb9ddd2530ed.dir
+      size: 98004
+      nfiles: 2
+    - path: src\features\feature_encoding.py
+      hash: md5
+      md5: be822a68a600ca4b6f7f638340bce587
+      size: 2875
+    outs:
+    - path: data\interim
+      hash: md5
+      md5: 29cf1cf4e445c9a61678ad321327ad25.dir
+      size: 12602773
+      nfiles: 2
