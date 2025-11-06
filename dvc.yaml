@@ -19,3 +19,17 @@ stages:
     - data\processed
     outs:
     - data\interim
+  train_model:
+    cmd: python src\models\train_model.py
+    deps:
+    - data\interim
+    - src\models\train_model.py
+    outs:
+    - artifict\random_forest.joblib
+  predict_model:
+    cmd: python src\models\predict_model.py
+    deps:
+    - artifict\random_forest.joblib
+    - src\models\predict_model.py
+    metrics:
+    - report.json
